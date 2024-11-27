@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
+
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Mono&subset=latin,cyrillic">
@@ -7,6 +8,7 @@
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <title>Код и Магия</title>
 </head>
+
 <body>
 
 <header>
@@ -63,7 +65,7 @@
   <div class="demo"></div>
 
   <div class="setup-open">
-    <img src="./img/user-1.jpg" class="setup-open-icon">
+    <img src="./img/user-1.jpg" class="setup-open-icon" alt="Аватар">
   </div>
 </header>
 
@@ -76,13 +78,13 @@
     <div class="setup-title">
       <div class="setup-user">
         <div class="upload">
-          <img class="setup-user-pic" src="./img/user-1.jpg"/>
+          <img class="setup-user-pic" src="./img/user-1.jpg" alt="Аватар">
           <input type="file" name="avatar">
         </div>
         <label>
           <input type="text" name="username"
-                 maxlength="25" required
-                 class="setup-user-name" value="Синий Пендальф"/>
+                 maxlength="25" autocomplete="on" required
+                 class="setup-user-name" value="Синий Пендальф">
         </label>
       </div>
 
@@ -124,7 +126,7 @@
         <input type="hidden" name="fireball-color" value="#ee4830">
       </div>
 
-      <div class="setup-artifacts" dropzone="move">
+      <div class="setup-artifacts" data-dropzone="move">
         <div class="setup-artifacts-cell"></div>
         <div class="setup-artifacts-cell"></div>
         <div class="setup-artifacts-cell"></div>
@@ -181,7 +183,29 @@
   </div>
 </template>
 
+<script>
+  var fireballSize = 22;
+  var wizardSpeed = 3;
+  var wizardWidth = 70;
+  
+  var getFireballSpeed = function(left) {
+    return left ? 5 : 2;
+  };
+
+  var getWizardHeight = function() {
+    return 1.337 * wizardWidth;
+  };
+
+  var getWizardX = function(width) {
+    return (width - wizardWidth) / 2;
+  };
+
+  var getWizardY = function(height) {
+    return height * 2 / 3 - getWizardHeight();
+  };
+</script>
 <script src="js/game.js"></script>
 
 </body>
+
 </html>
