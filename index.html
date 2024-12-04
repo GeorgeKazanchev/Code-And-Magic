@@ -65,13 +65,14 @@
   <div class="demo"></div>
 
   <div class="setup-open">
-    <img src="./img/user-1.jpg" class="setup-open-icon" alt="Аватар">
+    <img src="./img/user-1.jpg" class="setup-open-icon" alt="Аватар" tabindex="0">
   </div>
 </header>
 
 <div class="overlay setup hidden">
   <form class="setup-wizard-form"
         method="post"
+        action="#"
         enctype="multipart/form-data"
         autocomplete="off">
 
@@ -83,12 +84,12 @@
         </div>
         <label>
           <input type="text" name="username"
-                 maxlength="25" autocomplete="on" required
+                 minlength="2" maxlength="25" autocomplete="on" required
                  class="setup-user-name" value="Синий Пендальф">
         </label>
       </div>
 
-      <span class="setup-close">&times;</span>
+      <span class="setup-close" tabindex="0">&times;</span>
     </div>
 
 
@@ -112,7 +113,7 @@
             <g class="wizard">
               <use xlink:href="#wizard-coat" class="wizard-coat" style="fill: #6589a4"></use>
               <use xlink:href="#wizard-head" class="wizard-head"></use>
-              <use xlink:href="#wizard-eyes" class="wizard-eyes"></use>
+              <use xlink:href="#wizard-eyes" class="wizard-eyes" style="fill: #000000"></use>
               <use xlink:href="#wizard-hands" class="wizard-hands"></use>
             </g>
           </svg>
@@ -121,7 +122,7 @@
         <input type="hidden" name="eyes-color" value="black">
       </div>
 
-      <div class="setup-fireball-wrap">
+      <div class="setup-fireball-wrap" style="background-color: #ee4830">
         <div class="setup-fireball"></div>
         <input type="hidden" name="fireball-color" value="#ee4830">
       </div>
@@ -157,7 +158,7 @@
         <div class="setup-similar-list"><!--Список похожих персонажей--></div>
       </div>
 
-      <button class="button setup-submit">Сохранить</button>
+      <button class="button setup-submit" type="submit">Сохранить</button>
     </div>
   </form>
 </div>

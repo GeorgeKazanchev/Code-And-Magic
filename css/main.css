@@ -686,6 +686,7 @@ input[type=radio]:checked + .review-mark-label {
   margin-bottom: 0;
   color: #ffffff;
   background-color: #1cb34d;
+  cursor: pointer;
 }
 
 .setup-submit:disabled {
