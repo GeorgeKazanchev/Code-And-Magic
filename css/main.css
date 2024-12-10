@@ -622,6 +622,7 @@ input[type=radio]:checked + .review-mark-label {
 }
 
 .setup-artifacts-cell {
+  position: relative;
   width: 65px;
   height: 65px;
   box-sizing: border-box;

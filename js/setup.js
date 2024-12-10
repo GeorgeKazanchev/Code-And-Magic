@@ -100,9 +100,9 @@ var selectNextColor = function(colorsArray, currentColor) {
     : colorsArray[0];
 };
 
-var setSetupDefaultPosition = function() {
-  setupElement.style.left = '';
-  setupElement.style.top = '';
+var setDefaultPosition = function(elem) {
+  elem.style.left = '';
+  elem.style.top = '';
 };
 
 var popupEscPressHandler = function(evt) {
@@ -117,7 +117,7 @@ var popupEscPressHandler = function(evt) {
 
 var openPopup = function() {
   setupElement.classList.remove('hidden');
-  setSetupDefaultPosition();
+  setDefaultPosition(setupElement);
   document.addEventListener('keydown', popupEscPressHandler);
 };
 
