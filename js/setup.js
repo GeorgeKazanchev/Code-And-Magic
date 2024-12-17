@@ -17,28 +17,6 @@
 
   var WIZARDS_COUNT = 4;
 
-  var WIZARD_NAMES = [
-    'Иван',
-    'Хуан Себастьян',
-    'Мария',
-    'Кристоф',
-    'Виктор',
-    'Юлия',
-    'Люпита',
-    'Вашингтон',
-  ];
-
-  var WIZARD_SURNAMES = [
-    'да Марья',
-    'Верон',
-    'Мирабелла',
-    'Вальц',
-    'Онопко',
-    'Топольницкая',
-    'Нионго',
-    'Ирвинг',
-  ];
-
   var COAT_COLORS = [
     'rgb(101, 137, 164)',
     'rgb(241, 43, 107)',
@@ -63,22 +41,6 @@
     'rgb(232, 72, 213)',
     'rgb(230, 232, 72)',
   ];
-
-  var getRandomArrayItem = function(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
-  };
-
-  var generateWizards = function() {
-    var wizards = [];
-    for (var i = 0; i < WIZARDS_COUNT; ++i) {
-      wizards.push({
-        name: getRandomArrayItem(WIZARD_NAMES) + ' ' + getRandomArrayItem(WIZARD_SURNAMES),
-        coatColor: getRandomArrayItem(COAT_COLORS),
-        eyesColor: getRandomArrayItem(EYES_COLORS),
-      });
-    }
-    return wizards;
-  };
 
   var renderWizard = function(wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
