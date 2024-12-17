@@ -1,7 +1,7 @@
 'use strict';
 
 (function() {
-  var similarElement = document.querySelector('.setup-similar');
+  var similarContainerElement = document.querySelector('.setup-similar');
   var similarListElement = document.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
@@ -118,13 +118,14 @@
     fireballInputElement.value = target.style.backgroundColor;
   });
 
-  var wizards = generateWizards();
+  var loadingSuccessHandler = function(wizards) {
+    var fragment = document.createDocumentFragment();
+    for (var i = 0; i < wizards.length && i < WIZARDS_COUNT; ++i) {
+      fragment.append(renderWizard(wizards[i]));
+    }
+    similarListElement.append(fragment);
+    similarContainerElement.classList.remove('hidden');
+  };
 
-  var fragment = document.createDocumentFragment();
-  for (var i = 0; i < wizards.length; ++i) {
-    fragment.append(renderWizard(wizards[i]));
-  }
-  similarListElement.append(fragment);
-
-  similarElement.classList.remove('hidden');
+  window.api.load(loadingSuccessHandler, window.util.networkErrorHandler);
 })();

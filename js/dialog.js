@@ -10,6 +10,8 @@
   var avatarUploadElement = draggableElement.querySelector('input[type="file"]');
   var artifactElement = setupElement.querySelector('.setup-artifacts-cell img');
 
+  var formElement = document.querySelector('.setup-wizard-form');
+
   var setDefaultPosition = function(elem) {
     elem.style.left = '';
     elem.style.top = '';
@@ -141,5 +143,16 @@
 
     document.addEventListener('mousemove', mouseMoveHandler);
     document.addEventListener('mouseup', mouseUpHandler);
+  });
+
+  var savingSuccessHandler = function() {
+    closePopup();
+    window.util.networkSuccessHandler('Данные успешно загружены на сервер');
+  };
+
+  formElement.addEventListener('submit', function(evt) {
+    evt.preventDefault();
+    var data = new FormData(formElement);
+    window.api.save(data, savingSuccessHandler, window.util.networkErrorHandler);
   });
 })();
