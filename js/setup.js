@@ -41,18 +41,26 @@
       : colorsArray[0];
   };
 
-  coatElement.addEventListener('click', function(evt) {
-    var target = evt.target;
-    var currentColor = target.style.fill;
-    target.style.fill = selectNextColor(COAT_COLORS, currentColor);
-    coatInputElement.value = target.style.fill;
+  var getElementNextColor = function(elem, colorsEnum) {
+    var prevColor = elem.style.fill;
+    return selectNextColor(colorsEnum, prevColor);
+  };
+
+  var updateColor = function(elem, inputElem, color) {
+    elem.style.fill = color;
+    inputElem.value = color;
+  };
+
+  coatElement.addEventListener('click', function() {
+    var color = getElementNextColor(coatElement, COAT_COLORS);
+    updateColor(coatElement, coatInputElement, color);
+    window.similar.onCoatChange(color);
   });
 
-  eyesElement.addEventListener('click', function(evt) {
-    var target = evt.target;
-    var currentColor = target.style.fill;
-    target.style.fill = selectNextColor(EYES_COLORS, currentColor);
-    eyesInputElement.value = target.style.fill;
+  eyesElement.addEventListener('click', function() {
+    var color = getElementNextColor(eyesElement, EYES_COLORS);
+    updateColor(eyesElement, eyesInputElement, color);
+    window.similar.onEyesChange(color);
   });
 
   fireballElement.addEventListener('click', function(evt) {
