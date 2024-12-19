@@ -1,22 +1,6 @@
 'use strict';
 
 (function() {
-  var similarContainerElement = document.querySelector('.setup-similar');
-  var similarListElement = document.querySelector('.setup-similar-list');
-  var similarWizardTemplate = document.querySelector('#similar-wizard-template')
-    .content
-    .querySelector('.setup-similar-item');
-
-  var coatElement = document.querySelector('.setup-wizard .wizard-coat');
-  var eyesElement = document.querySelector('.setup-wizard .wizard-eyes');
-  var fireballElement = document.querySelector('.setup-fireball-wrap');
-
-  var coatInputElement = document.querySelector('input[name="coat-color"]');
-  var eyesInputElement = document.querySelector('input[name="eyes-color"]');
-  var fireballInputElement = document.querySelector('input[name="fireball-color"]');
-
-  var WIZARDS_COUNT = 4;
-
   var COAT_COLORS = [
     'rgb(101, 137, 164)',
     'rgb(241, 43, 107)',
@@ -42,15 +26,13 @@
     'rgb(230, 232, 72)',
   ];
 
-  var renderWizard = function(wizard) {
-    var wizardElement = similarWizardTemplate.cloneNode(true);
+  var coatElement = document.querySelector('.setup-wizard .wizard-coat');
+  var eyesElement = document.querySelector('.setup-wizard .wizard-eyes');
+  var fireballElement = document.querySelector('.setup-fireball-wrap');
 
-    wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
-
-    return wizardElement;
-  };
+  var coatInputElement = document.querySelector('input[name="coat-color"]');
+  var eyesInputElement = document.querySelector('input[name="eyes-color"]');
+  var fireballInputElement = document.querySelector('input[name="fireball-color"]');
 
   var selectNextColor = function(colorsArray, currentColor) {
     var currentColorIndex = colorsArray.indexOf(currentColor);
@@ -79,15 +61,4 @@
     target.style.backgroundColor = selectNextColor(FIREBALL_COLORS, currentColor);
     fireballInputElement.value = target.style.backgroundColor;
   });
-
-  var loadingSuccessHandler = function(wizards) {
-    var fragment = document.createDocumentFragment();
-    for (var i = 0; i < wizards.length && i < WIZARDS_COUNT; ++i) {
-      fragment.append(renderWizard(wizards[i]));
-    }
-    similarListElement.append(fragment);
-    similarContainerElement.classList.remove('hidden');
-  };
-
-  window.api.load(loadingSuccessHandler, window.util.networkErrorHandler);
 })();
