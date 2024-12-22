@@ -12,6 +12,8 @@
 
   var formElement = document.querySelector('.setup-wizard-form');
 
+  var Coordinates = window.coordinates.Coordinates;
+
   var setDefaultPosition = function(elem) {
     elem.style.left = '';
     elem.style.top = '';
@@ -53,27 +55,19 @@
 
   draggableElement.addEventListener('mousedown', function(evt) {
     evt.preventDefault();
-
     var isDragged = false;
-
-    var startCoords = {
-      x: evt.clientX,
-      y: evt.clientY,
-    };
+    var startCoords = new Coordinates(evt.clientX, evt.clientY);
 
     var mouseMoveHandler = function(moveEvt) {
       moveEvt.preventDefault();
       isDragged = true;
 
-      var shift = {
-        x: moveEvt.clientX - startCoords.x,
-        y: moveEvt.clientY - startCoords.y,
-      };
+      var shift = new Coordinates(
+        moveEvt.clientX - startCoords.x,
+        moveEvt.clientY - startCoords.y
+      );
 
-      startCoords = {
-        x: moveEvt.clientX,
-        y: moveEvt.clientY,
-      };
+      startCoords = new Coordinates(moveEvt.clientX, moveEvt.clientY);
 
       setupElement.style.left = (setupElement.offsetLeft + shift.x) + 'px';
       setupElement.style.top = (setupElement.offsetTop + shift.y) + 'px';
@@ -100,24 +94,17 @@
 
   artifactElement.addEventListener('mousedown', function(evt) {
     evt.preventDefault();
-
-    var startCoords = {
-      x: evt.clientX,
-      y: evt.clientY,
-    };
+    var startCoords = new Coordinates(evt.clientX, evt.clientY);
 
     var mouseMoveHandler = function(moveEvt) {
       moveEvt.preventDefault();
 
-      var shift = {
-        x: moveEvt.clientX - startCoords.x,
-        y: moveEvt.clientY - startCoords.y,
-      };
+      var shift = new Coordinates(
+        moveEvt.clientX - startCoords.x,
+        moveEvt.clientY - startCoords.y
+      );
 
-      startCoords = {
-        x: moveEvt.clientX,
-        y: moveEvt.clientY,
-      };
+      startCoords = new Coordinates(moveEvt.clientX, moveEvt.clientY);
 
       artifactElement.style.position = 'absolute';
       artifactElement.style.zIndex = 1000;
