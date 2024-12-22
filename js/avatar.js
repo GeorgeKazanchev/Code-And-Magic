@@ -7,6 +7,11 @@
   var previewElement = document.querySelector('.setup-user-pic');
   var setupOpenIconElement = document.querySelector('.setup-open-icon');
 
+  var setAvatarPreviews = function(avatarUrl) {
+    previewElement.src = avatarUrl;
+    setupOpenIconElement.src = avatarUrl;
+  };
+
   fileChooserElement.addEventListener('change', function() {
     var file = fileChooserElement.files[0];
     var fileName = file.name.toLowerCase();
@@ -19,11 +24,16 @@
       var reader = new FileReader();
 
       reader.addEventListener('load', function() {
-        previewElement.src = reader.result;
-        setupOpenIconElement.src = reader.result;
+        setAvatarPreviews(reader.result);
+        localStorage.setItem('avatarUrl', reader.result);
       });
 
       reader.readAsDataURL(file);
     }
   });
+
+  var avatarUrl = localStorage.getItem('avatarUrl');
+  if (avatarUrl) {
+    setAvatarPreviews(avatarUrl);
+  }
 })();
