@@ -1,6 +1,7 @@
 'use strict';
 
 (function() {
+  var formElement = document.querySelector('.setup-wizard-form');
   var coatElement = document.querySelector('.setup-wizard .wizard-coat');
   var eyesElement = document.querySelector('.setup-wizard .wizard-eyes');
   var fireballElement = document.querySelector('.setup-fireball-wrap');
@@ -42,6 +43,22 @@
     var color = wizard.changeFireballColor();
     fireballElement.style.backgroundColor = color;
     fireballInputElement.value = color;
+  });
+
+  formElement.addEventListener('submit', function(evt) {
+    evt.preventDefault();
+
+    var wizardSvgElement = document.querySelector('.wizard-svg').cloneNode(true);
+    wizardSvgElement.querySelector('#wizard-coat').style.fill = wizard.coatColor;
+    wizardSvgElement.querySelector('#wizard-eyes').style.fill = wizard.eyesColor;
+
+    var wizardBase64Right = window.svg2base64(wizardSvgElement);
+
+    wizardSvgElement.querySelector('#wizard').style.transform = 'translate(62px, 0) scale(-1, 1)';
+
+    var wizardBase64Left = window.svg2base64(wizardSvgElement);
+
+    window.restartGame(wizardBase64Right, wizardBase64Left);
   });
 
   window.myWizard = wizard;
