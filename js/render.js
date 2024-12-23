@@ -21,7 +21,7 @@
 
   var render = function(wizards) {
     var fragment = document.createDocumentFragment();
-    for (var i = 0; i < wizards.length && i < WIZARDS_COUNT; ++i) {
+    for (var i = 0; i < WIZARDS_COUNT && i < wizards.length; ++i) {
       fragment.append(renderWizard(wizards[i]));
     }
     similarListElement.innerHTML = '';

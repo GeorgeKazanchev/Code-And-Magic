@@ -12,8 +12,6 @@
 
   var formElement = document.querySelector('.setup-wizard-form');
 
-  var Coordinates = window.coordinates.Coordinates;
-
   var setDefaultPosition = function(elem) {
     elem.style.left = '';
     elem.style.top = '';
@@ -56,18 +54,18 @@
   draggableElement.addEventListener('mousedown', function(evt) {
     evt.preventDefault();
     var isDragged = false;
-    var startCoords = new Coordinates(evt.clientX, evt.clientY);
+    var startCoords = new window.Coordinates(evt.clientX, evt.clientY);
 
     var mouseMoveHandler = function(moveEvt) {
       moveEvt.preventDefault();
       isDragged = true;
 
-      var shift = new Coordinates(
+      var shift = new window.Coordinates(
         moveEvt.clientX - startCoords.x,
         moveEvt.clientY - startCoords.y
       );
 
-      startCoords = new Coordinates(moveEvt.clientX, moveEvt.clientY);
+      startCoords = new window.Coordinates(moveEvt.clientX, moveEvt.clientY);
 
       setupElement.style.left = (setupElement.offsetLeft + shift.x) + 'px';
       setupElement.style.top = (setupElement.offsetTop + shift.y) + 'px';
@@ -94,17 +92,17 @@
 
   artifactElement.addEventListener('mousedown', function(evt) {
     evt.preventDefault();
-    var startCoords = new Coordinates(evt.clientX, evt.clientY);
+    var startCoords = new window.Coordinates(evt.clientX, evt.clientY);
 
     var mouseMoveHandler = function(moveEvt) {
       moveEvt.preventDefault();
 
-      var shift = new Coordinates(
+      var shift = new window.Coordinates(
         moveEvt.clientX - startCoords.x,
         moveEvt.clientY - startCoords.y
       );
 
-      startCoords = new Coordinates(moveEvt.clientX, moveEvt.clientY);
+      startCoords = new window.Coordinates(moveEvt.clientX, moveEvt.clientY);
 
       artifactElement.style.position = 'absolute';
       artifactElement.style.zIndex = 1000;
